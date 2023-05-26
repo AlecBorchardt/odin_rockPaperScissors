@@ -1,82 +1,51 @@
-        //variable to store player selection input
-//let playerSelection = prompt("Rock, Paper or Scissors?","");
-
-        //converts input to lowercase
-//playerSelection = playerSelection.toLowerCase();
-
-        //function getComputerChoice randomly 
-        //returns rock, paper, or scissors.
-/*
-function getComputerChoice(){
-    switch ((Math.floor(Math.random() * 3) + 1)){
-    case 1:
-        return "rock";
-    case 2:
-        return "paper";
-    case 3:
-        return "scissors";
-    default:
-        return "ya done goofed the code!";
-}
-}
-*/
-//let computerChoice = getComputerChoice();
-
-//function rockPaperScissors  
-//takes playerSelection and getComputerChoice and 
-//returns winner message.
-//*** make user input case insensitive
 
 let playerScore = 0;
 let computerScore = 0;
 
 function rockPaperScissors(playerSelection, computerChoice){
 
-    console.log(playerSelection);
-    console.log(computerChoice);
-
-    //let playerScore = 0;
-    //let computerScore = 0;
+    document.getElementById('player').innerText = playerScore;
+    document.getElementById('computer').innerText = computerScore;
+    let gobbler = "";
 
     if (playerSelection == "rock" && computerChoice == "scissors"){
-        console.log("rock beats scissors. you win!");
+        gobbler = "rock beats scissors. you win!";
         playerScore++;
     }
     else if (playerSelection == "rock" && computerChoice == "paper"){
-        console.log("paper beats rock. you lose!");
+        gobbler = "paper beats rock. you lose!";
         computerScore++;
     }
     else if (playerSelection == "paper" && computerChoice == "rock"){
-        console.log("paper beats rock. you win!");
+        gobbler = "paper beats rock. you win!";
         playerScore++;
     }
     else if (playerSelection == "paper" && computerChoice == "scissors"){
-        console.log("scissors beats paper. you lose!");
+        gobbler = "scissors beats paper. you lose!";
         computerScore++;
     }
     else if (playerSelection == "scissors" && computerChoice == "paper"){
-        console.log("scissors beats paper. you win!");
+        gobbler = "scissors beats paper. you win!";
         playerScore++;
     }
     else if (playerSelection == "scissors" && computerChoice == "rock"){
-        console.log("rock beats scissors. you lose!");
+        gobbler = "rock beats scissors. you lose!";
         computerScore++;
     }
     else if (computerChoice == playerSelection){
-        console.log("It's a tie!");
+        gobbler = "It's a tie!";
     }
-    console.log(playerScore);
-    console.log(computerScore);
+    document.getElementById('announcement').innerText = gobbler;
+    document.getElementById('player').innerText = playerScore;
+    document.getElementById('computer').innerText = computerScore;
 }
 
-//testing
-//rockPaperScissors(playerSelection, computerChoice);
+function singleRound(choice){
 
-//function called singleRound that plays 1 round.
-function singleRound(){
-
-    let playerSelection = prompt("Rock, Paper or Scissors?","");
-    playerSelection = playerSelection.toLowerCase();
+		document.getElementById('player').innerText = playerScore;
+    document.getElementById('computer').innerText = computerScore;
+    
+    let playerSelection = choice.toString();
 
     function getComputerChoice(){
         switch ((Math.floor(Math.random() * 3) + 1)){
@@ -92,45 +61,34 @@ function singleRound(){
     }
 
     let computerChoice = getComputerChoice();
-
+    document.getElementById('player').innerText = playerScore;
+    document.getElementById('computer').innerText = computerScore;
     rockPaperScissors(playerSelection, computerChoice);
+    if ((playerScore ==5) || (computerScore == 5)){
+        game();
+    }
 };
 
-//function called game that plays 5 rounds,
-//keeps score, and announces winner.
 function game(){
 
-    //let playerScore = 0;
-    //let computerScore = 0;
-
-    singleRound();
-    singleRound();
-    singleRound();
-    singleRound();
-    singleRound();
-  
-    console.log("Final player score: " + playerScore);
-    console.log("Final computerScore: " + computerScore);
-
+    let announcement = "";
     if (playerScore > computerScore){
-        console.log("You Won the Game!");
+        announcement = "You Won the Game!";
     }
     else if (playerScore < computerScore){
-        console.log("You lost the game!");
+        announcement = "You lost the game!";
     }
     else {
-        console.log("You tie the game!");
+        announcement = "You tie the game!";
     }
-    
+    const element1 = document.getElementById("Rock");
+    const element2 = document.getElementById("Paper");
+    const element3 = document.getElementById("Scissors");
+    const element4 = document.getElementById("buttons");
+    element1.remove();
+    element2.remove();
+    element3.remove();
+    element4.remove();
+    document.getElementById("announcement").innerText = announcement;
+
 };
-
-//testing
-game();
-
-/*
-I spent about 4 hours writing, rewriting, 
-reading and googling before I figured out I had omitted the parameters
-when I called the rockPaperScissors function. I thought I could
-set them as variables first because I didn't understand how function
-parameters worked.
-*/
